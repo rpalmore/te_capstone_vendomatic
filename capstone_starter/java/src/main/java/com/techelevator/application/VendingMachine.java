@@ -21,6 +21,8 @@ public class VendingMachine {
             if (choice.equals("display")) {
                 // display the vending machine slots
                 listAllItems(vendingItemList);
+                System.out.println();
+                UserInput.pause();
             } else if (choice.equals("purchase")) {
                 System.out.println("purchase");
             } else if (choice.equals("exit")) {
@@ -28,7 +30,6 @@ public class VendingMachine {
                 break;
             }
         }
-
     }
 
     private List<VendingItem> readFromFile(){
@@ -38,18 +39,15 @@ public class VendingMachine {
             Scanner fileScanner = new Scanner(filePath);
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
-                // check |
                 String[] lineArray = line.split("\\|");
                 String location = lineArray[0];
                 String name = lineArray[1];
-
-
-                //Check this if money is not working properly!
-                Double price = Double.parseDouble(lineArray[2]);
+                BigDecimal price = new BigDecimal(lineArray[2]);
                 String type = lineArray[3];
 
                 VendingItem items = new VendingItem(location, name, price, type);
                 vendingItemsList.add(items);
+                //vendingItemsList.add(quantity);
             }
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFound");
@@ -58,7 +56,8 @@ public class VendingMachine {
     }
 
     private void listAllItems(List<VendingItem> vendingItemList) {
-   //     System.out.println(listAllItems);
         UserOutput.listItems(vendingItemList);
     }
+
+
 }

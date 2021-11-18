@@ -12,8 +12,7 @@ public class UserInput
 {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static String getHomeScreenOption()
-    {
+    public static String getHomeScreenOption() {
         System.out.println("What would you like to do?");
         System.out.println();
 
@@ -37,6 +36,12 @@ public class UserInput
             default:
                 return "";
         }
+
+    }
+
+        public static void pause(){
+        System.out.print("Press enter to continue ");
+        String enter = scanner.nextLine();
 
     }
 

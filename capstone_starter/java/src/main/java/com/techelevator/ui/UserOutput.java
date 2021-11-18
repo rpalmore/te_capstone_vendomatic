@@ -1,5 +1,7 @@
 package com.techelevator.ui;
 
+import com.techelevator.models.Drinks;
+import com.techelevator.models.Soundable;
 import com.techelevator.models.VendingItem;
 
 import java.math.BigDecimal;
@@ -33,10 +35,11 @@ public class UserOutput
     }
 
     public static void listItems(List<VendingItem> vendingItemList){
-        for (VendingItem item : vendingItemList){
+        for (VendingItem item : vendingItemList) {
             System.out.println(item.getLocation() + " " + item.getName() + " " +
-                    item.getPrice() + " " + item.getType() + " " + item.getLocation());
+                    item.getPrice() + " " + item.getType() + " " + item.getQuantity());
         }
+
     }
 
 }
