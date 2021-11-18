@@ -42,8 +42,29 @@ public class UserInput
         public static void pause(){
         System.out.print("Press enter to continue ");
         String enter = scanner.nextLine();
+    }
+    public static String purchase(){
+        UserOutput.displayPurchaseChoices();
+        System.out.println("1) Feed Money");
+        System.out.println("2) Select product");
+        System.out.println("3) Finish transaction");
 
+        System.out.println();
+        System.out.print("Please select an option: ");
+
+        String selectedOption2 = scanner.nextLine();
+        String option2 = selectedOption2.trim().toLowerCase();
+
+        switch (option2) {
+            case "1":
+                return "money";
+            case "2":
+                return "Select product";
+            case "3":
+                return "Finish transaction";
+            default:
+                return "";
+        }
     }
 
-    
 }

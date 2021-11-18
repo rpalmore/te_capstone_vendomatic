@@ -1,6 +1,6 @@
 package com.techelevator.application;
 
-import com.techelevator.models.VendingItem;
+import com.techelevator.models.*;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 
@@ -13,26 +13,41 @@ import java.util.Scanner;
 
 public class VendingMachine {
     public void run() {
-            List<VendingItem> vendingItemList = readFromFile();
+        List<VendingItem> vendingItemList = readFromFile();
         while (true) {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
+            String choice2 = UserInput.purchase();
 
+            //Display switch
+            // display the vending machine slots
             if (choice.equals("display")) {
-                // display the vending machine slots
                 listAllItems(vendingItemList);
                 System.out.println();
                 UserInput.pause();
+
+                // Purchase if else switch statements
             } else if (choice.equals("purchase")) {
-                System.out.println("purchase");
+                if (choice2.equals("money")) {
+                    System.out.println("You fed some money");
+                } else if (choice2.equals("Select product")) {
+
+                } else if (choice2.equals("exit")) {
+                    System.out.println("Finish transaction!");
+                    System.exit(0);
+                }
+                UserInput.pause();
+
+                //exits
             } else if (choice.equals("exit")) {
                 System.out.println("Good Bye!");
                 break;
             }
         }
+
     }
 
-    private List<VendingItem> readFromFile(){
+    private List<VendingItem> readFromFile() {
         File filePath = new File("vendingmachine.csv");
         List<VendingItem> vendingItemsList = new ArrayList<>();
         try {
@@ -45,8 +60,20 @@ public class VendingMachine {
                 BigDecimal price = new BigDecimal(lineArray[2]);
                 String type = lineArray[3];
 
-                VendingItem items = new VendingItem(location, name, price, type);
-                vendingItemsList.add(items);
+                //     VendingItem items = new VendingItem(location, name, price, type);
+                if (type.equalsIgnoreCase("gum")) {
+                    Gum gum = new Gum(location, name, price, type);
+                    vendingItemsList.add(gum);
+                } else if (type.equalsIgnoreCase("candy")) {
+                    Candy candy = new Candy(location, name, price, type);
+                    vendingItemsList.add(candy);
+                } else if (type.equalsIgnoreCase("drink")) {
+                    Drinks drink = new Drinks(location, name, price, type);
+                    vendingItemsList.add(drink);
+                } else if (type.equalsIgnoreCase("chip")) {
+                    Chips chips = new Chips(location, name, price, type);
+                    vendingItemsList.add(chips);
+                }
                 //vendingItemsList.add(quantity);
             }
         } catch (FileNotFoundException e) {
