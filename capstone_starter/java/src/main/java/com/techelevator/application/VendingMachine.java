@@ -32,8 +32,18 @@ public class VendingMachine {
                 if (choice2.equals("feeder")) {
                     System.out.println("Please insert money.");
                     Money.addDollarsProvided();
-                    System.out.println(Money.getTotalAmount());
-                } else if (choice2.equals("Select product")) {
+                } else if (choice2.equals("select product")) {
+                    //displaying items
+                    listAllItems(vendingItemList);
+                    //select item from userinput
+                    System.out.println(UserInput.selectItem());
+                        // adding the product from the list
+                        // subtracting the money
+                        // subtract 1 from the product list
+                        // check the total if it is enough
+                        // in stock?
+                        // dispense item with sound
+                        // display new balance
 
                 } else if (choice2.equals("exit")) {
                     System.out.println("Finish transaction!");

@@ -1,6 +1,11 @@
 package com.techelevator.ui;
 
+import com.techelevator.application.VendingMachine;
+import com.techelevator.models.Money;
+import com.techelevator.models.VendingItem;
+
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -49,7 +54,7 @@ public class UserInput {
         System.out.println("2) Select product");
         System.out.println("3) Finish transaction");
         System.out.println();
-        System.out.println("Current money provided: $0.00 ");// we will
+        System.out.println("Current money provided: " + Money.getTotalAmount());// we will
         // concatenate using BigDecimal getBalance
 
         System.out.println();
@@ -74,4 +79,30 @@ public class UserInput {
         String dollarProvided = scanner.nextLine();
         return dollarProvided;
     }
+
+    public static String selectItem(){
+        System.out.println("Enter which product you would like? ");
+        String itemUserSelected = scanner.nextLine();
+
+       // this.location
+        VendingMachine vendingMachine = new VendingMachine();
+//                UserOutput userOutput = new UserOutput();
+//                userOutput.getLocation;
+//                vendingItemList.get
+
+                // if this.location(i).equals(itemUserSelected){
+        //              itemsUserSelected(i) == this.type
+        //              itemsUserSelected(i) == this.price
+            //          total = total- this.price
+
+      //  for (VendingItem item : )
+        return itemUserSelected;
+    }
 }
+
+//    public static void listItems(List<VendingItem> vendingItemList){
+//
+//        for (VendingItem item : vendingItemList) {
+//            System.out.println(item.getLocation() + " " + item.getName() + " " +
+//                    item.getPrice() + " " + item.getType() + " " + item.getQuantity());
+//        }

@@ -18,4 +18,5 @@ public class Money { // class does not need to be static
     public static BigDecimal getTotalAmount() {
         return totalAmount;
     }
+
 }
