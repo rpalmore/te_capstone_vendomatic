@@ -8,8 +8,7 @@ import java.util.Scanner;
  * 
  * Dependencies: None
  */
-public class UserInput
-{
+public class UserInput {
     private static Scanner scanner = new Scanner(System.in);
 
     public static String getHomeScreenOption() {
@@ -39,15 +38,19 @@ public class UserInput
 
     }
 
-        public static void pause(){
+    public static void pause() {
         System.out.print("Press enter to continue ");
         String enter = scanner.nextLine();
     }
-    public static String purchase(){
+
+    public static String purchase() {
         UserOutput.displayPurchaseChoices();
         System.out.println("1) Feed Money");
         System.out.println("2) Select product");
         System.out.println("3) Finish transaction");
+        System.out.println();
+        System.out.println("Current money provided: $0.00 ");// we will
+        // concatenate using BigDecimal getBalance
 
         System.out.println();
         System.out.print("Please select an option: ");
@@ -57,14 +60,18 @@ public class UserInput
 
         switch (option2) {
             case "1":
-                return "money";
+                return "feeder";
             case "2":
-                return "Select product";
+                return "select product";
             case "3":
-                return "Finish transaction";
+                return "finish transaction";
             default:
                 return "";
         }
     }
 
+    public static String feedMoney() {
+        String dollarProvided = scanner.nextLine();
+        return dollarProvided;
+    }
 }

@@ -17,6 +17,9 @@ public abstract class VendingItem {
         this.quantity = quantity;  // do we need this in our constructor?
     }
 
+   // We could also add the quantity in the constructor, with the value of 5.
+    // we could add a subtractOne method in here to subtract from the starting quantity.
+
     //getters
 
     public String getLocation() {

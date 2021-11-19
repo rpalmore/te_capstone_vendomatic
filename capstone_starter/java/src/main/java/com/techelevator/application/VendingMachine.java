@@ -17,7 +17,6 @@ public class VendingMachine {
         while (true) {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
-            String choice2 = UserInput.purchase();
 
             //Display switch
             // display the vending machine slots
@@ -27,16 +26,20 @@ public class VendingMachine {
                 UserInput.pause();
 
                 // Purchase if else switch statements
+
             } else if (choice.equals("purchase")) {
-                if (choice2.equals("money")) {
-                    System.out.println("You fed some money");
+                String choice2 = UserInput.purchase();
+                if (choice2.equals("feeder")) {
+                    System.out.println("Please insert money.");
+                    Money.addDollarsProvided();
+                    System.out.println(Money.getTotalAmount());
                 } else if (choice2.equals("Select product")) {
 
                 } else if (choice2.equals("exit")) {
                     System.out.println("Finish transaction!");
                     System.exit(0);
                 }
-                UserInput.pause();
+                //UserInput.pause();
 
                 //exits
             } else if (choice.equals("exit")) {
