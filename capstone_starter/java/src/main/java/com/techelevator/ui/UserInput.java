@@ -80,15 +80,11 @@ public class UserInput {
         return dollarProvided;
     }
 
-    public static String selectItem(){
+    public static String selectItem() {
         System.out.println("Enter which product you would like? ");
         String itemUserSelected = scanner.nextLine();
-
-       // this.location
-        VendingMachine vendingMachine = new VendingMachine();
-//                UserOutput userOutput = new UserOutput();
-//                userOutput.getLocation;
-//                vendingItemList.get
+        return itemUserSelected;
+    }
 
                 // if this.location(i).equals(itemUserSelected){
         //              itemsUserSelected(i) == this.type
@@ -96,9 +92,9 @@ public class UserInput {
             //          total = total- this.price
 
       //  for (VendingItem item : )
-        return itemUserSelected;
     }
-}
+
+
 
 //    public static void listItems(List<VendingItem> vendingItemList){
 //

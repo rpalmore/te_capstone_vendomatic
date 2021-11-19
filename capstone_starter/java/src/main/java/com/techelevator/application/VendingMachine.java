@@ -36,7 +36,10 @@ public class VendingMachine {
                     //displaying items
                     listAllItems(vendingItemList);
                     //select item from userinput
-                    System.out.println(UserInput.selectItem());
+                    //System.out.println(UserInput.selectItem());
+                    searchForItemInList(vendingItemList, UserInput.selectItem());
+
+
                         // adding the product from the list
                         // subtracting the money
                         // subtract 1 from the product list
@@ -97,6 +100,17 @@ public class VendingMachine {
 
     private void listAllItems(List<VendingItem> vendingItemList) {
         UserOutput.listItems(vendingItemList);
+    }
+
+    //defensive programming
+    private VendingItem searchForItemInList(List<VendingItem> vendingItems, String location) {
+        for (VendingItem vendingItem : vendingItems) {
+            if (vendingItem.getLocation().equalsIgnoreCase(location)) {
+                System.out.println(vendingItem);
+                return vendingItem;
+            }
+        }
+        return null;
     }
 
 

@@ -8,12 +8,14 @@ public abstract class VendingItem {
     private BigDecimal price;
     private String type;
     private String quantity = "5";
+    private String sound;
 
     public VendingItem(String location, String name, BigDecimal price, String type) {
         this.location = location;
         this.name = name;
         this.price = price;
         this.type = type;
+        this.sound = sound;
         this.quantity = quantity;  // do we need this in our constructor?
     }
 
@@ -39,4 +41,10 @@ public abstract class VendingItem {
     }
 
     public String getQuantity() { return quantity;}
+
+    public String getSound() {return sound;}
+
+    public void setSound(String sound) {
+        this.sound = sound;
+    }
 }
