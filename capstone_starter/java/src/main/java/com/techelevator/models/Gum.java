@@ -2,7 +2,7 @@ package com.techelevator.models;
 
 import java.math.BigDecimal;
 
-public class Gum extends VendingItem implements Soundable{
+public class Gum extends VendingItem{
 
     // maybe this is where we add the quantity property?
 
@@ -11,8 +11,8 @@ public class Gum extends VendingItem implements Soundable{
     }
 
 
-    @Override
-    public String sound() {
-        return "Chew Chew, Yum!";
-    }
+//    @Override
+//    public String sound() {
+//        return "Chew Chew, Yum!";
+//    }
 }

@@ -15,7 +15,7 @@ public abstract class VendingItem {
         this.name = name;
         this.price = price;
         this.type = type;
-        this.sound = sound;
+        //this.sound = sound;
         this.quantity = quantity;  // do we need this in our constructor?
     }
 

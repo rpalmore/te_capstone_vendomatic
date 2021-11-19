@@ -77,6 +77,7 @@ public class UserInput {
 
     public static String feedMoney() {
         String dollarProvided = scanner.nextLine();
+        //Money.addDollarsProvided();
         return dollarProvided;
     }
 

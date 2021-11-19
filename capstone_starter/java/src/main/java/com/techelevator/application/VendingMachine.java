@@ -26,18 +26,25 @@ public class VendingMachine {
                 UserInput.pause();
 
                 // Purchase if else switch statements
-
             } else if (choice.equals("purchase")) {
-                String choice2 = UserInput.purchase();
-                if (choice2.equals("feeder")) {
-                    System.out.println("Please insert money.");
-                    Money.addDollarsProvided();
-                } else if (choice2.equals("select product")) {
-                    //displaying items
-                    listAllItems(vendingItemList);
-                    //select item from userinput
-                    //System.out.println(UserInput.selectItem());
-                    searchForItemInList(vendingItemList, UserInput.selectItem());
+                boolean buying = true;
+                while (buying) {
+                    String choice2 = UserInput.purchase();
+                    if (choice2.equals("feeder")) {
+                        System.out.println("Please insert money.");
+                        Money.addDollarsProvided();
+                    } else if (choice2.equals("select product")) {
+                        //displaying items
+                        listAllItems(vendingItemList);
+                        // start your check
+                        // 1. if item exists
+                        // 2. if item is not sold out
+
+                        searchForItemInList(vendingItemList, UserInput.selectItem());
+                        // if ( item does not exist) {
+                        // sout: item does not exist ...
+                        // bounce user back to purchase
+                        // if item exists, subtract, dispense...
 
 
                         // adding the product from the list
@@ -48,15 +55,17 @@ public class VendingMachine {
                         // dispense item with sound
                         // display new balance
 
-                } else if (choice2.equals("exit")) {
-                    System.out.println("Finish transaction!");
-                    System.exit(0);
+                    } else if (choice2.equals("finish transaction")) {
+                        buying = false;
+                        // print receipt
+                        // give out change
+                    }
                 }
-                //UserInput.pause();
-
                 //exits
             } else if (choice.equals("exit")) {
-                System.out.println("Good Bye!");
+
+                System.out.println("Goodbye!");
+                System.exit(0);
                 break;
             }
         }
@@ -75,8 +84,8 @@ public class VendingMachine {
                 String name = lineArray[1];
                 BigDecimal price = new BigDecimal(lineArray[2]);
                 String type = lineArray[3];
-
-                //     VendingItem items = new VendingItem(location, name, price, type);
+                // We think we don't need to tease out by type, but we're leaving this for now.
+                // If we remove, we still have to add to our Vending Items List.
                 if (type.equalsIgnoreCase("gum")) {
                     Gum gum = new Gum(location, name, price, type);
                     vendingItemsList.add(gum);
@@ -90,7 +99,6 @@ public class VendingMachine {
                     Chips chips = new Chips(location, name, price, type);
                     vendingItemsList.add(chips);
                 }
-                //vendingItemsList.add(quantity);
             }
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFound");
@@ -102,16 +110,22 @@ public class VendingMachine {
         UserOutput.listItems(vendingItemList);
     }
 
-    //defensive programming
+    //defensive programming -- we have to handle null at some point.
     private VendingItem searchForItemInList(List<VendingItem> vendingItems, String location) {
         for (VendingItem vendingItem : vendingItems) {
             if (vendingItem.getLocation().equalsIgnoreCase(location)) {
-                System.out.println(vendingItem);
-                return vendingItem;
+                    //System.out.println(vendingItem.getType());
+                    if (vendingItem.getType().equalsIgnoreCase("chip")) {
+                        System.out.println("Crunch Crunch, Yum!");
+                    }
+                    return vendingItem;
+                }
             }
+            System.out.println("Item does not exist! Please enter an item in the list.");
+//            UserInput.purchase();
+//            UserInput.feedMoney();
+            return null;
         }
-        return null;
     }
 
 
-}
