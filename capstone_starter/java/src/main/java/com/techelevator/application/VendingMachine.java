@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class VendingMachine {
+    BigDecimal itemPrice;
     public void run() {
         List<VendingItem> vendingItemList = readFromFile();
         while (true) {
@@ -40,7 +41,14 @@ public class VendingMachine {
                         // 1. if item exists
                         // 2. if item is not sold out
 
-                        searchForItemInList(vendingItemList, UserInput.selectItem());
+
+
+                        Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
+
+                       // VendingItem priceFromList = searchForItemInList(vendingItemList, UserInput.selectItem());
+                       // itemPrice = new BigDecimal(String.valueOf(priceFromList.getPrice()));
+
+
                         // if ( item does not exist) {
                         // sout: item does not exist ...
                         // bounce user back to purchase
@@ -57,6 +65,7 @@ public class VendingMachine {
 
                     } else if (choice2.equals("finish transaction")) {
                         buying = false;
+                        Money.returnChange();
                         // print receipt
                         // give out change
                     }
@@ -111,7 +120,7 @@ public class VendingMachine {
     }
 
     //defensive programming -- we have to handle null at some point.
-    private VendingItem searchForItemInList(List<VendingItem> vendingItems, String location) {
+    public VendingItem searchForItemInList(List<VendingItem> vendingItems, String location) {
         for (VendingItem vendingItem : vendingItems) {
             if (vendingItem.getLocation().equalsIgnoreCase(location)) {
                     //System.out.println(vendingItem.getType());
