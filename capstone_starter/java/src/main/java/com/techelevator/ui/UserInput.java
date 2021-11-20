@@ -44,7 +44,7 @@ public class UserInput {
     }
 
     public static void pause() {
-        System.out.print("Press enter to continue ");
+        System.out.print("Press enter to continue >> ");
         String enter = scanner.nextLine();
     }
 
@@ -54,8 +54,7 @@ public class UserInput {
         System.out.println("2) Select product");
         System.out.println("3) Finish transaction");
         System.out.println();
-        System.out.println("Current money provided: " + Money.getTotalAmount());// we will
-        // concatenate using BigDecimal getBalance
+        System.out.println("Current money provided: $" + Money.getTotalAmount());
 
         System.out.println();
         System.out.print("Please select an option: ");
@@ -82,17 +81,11 @@ public class UserInput {
     }
 
     public static String selectItem() {
-        System.out.println("Enter which product you would like? ");
+        System.out.println("Enter the product number you would like: ");
         String itemUserSelected = scanner.nextLine();
         return itemUserSelected;
     }
 
-                // if this.location(i).equals(itemUserSelected){
-        //              itemsUserSelected(i) == this.type
-        //              itemsUserSelected(i) == this.price
-            //          total = total- this.price
-
-      //  for (VendingItem item : )
     }
 
 
