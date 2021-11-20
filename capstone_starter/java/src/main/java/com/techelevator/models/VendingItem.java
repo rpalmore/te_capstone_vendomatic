@@ -7,7 +7,7 @@ public abstract class VendingItem {
     private String name;
     private BigDecimal price;
     private String type;
-    private String quantity = "5";
+    private int quantity = 5;
     private String sound;
 
     public VendingItem(String location, String name, BigDecimal price, String type) {
@@ -40,11 +40,16 @@ public abstract class VendingItem {
         return type;
     }
 
-    public String getQuantity() { return quantity;}
+    public int getQuantity() { return quantity;}
 
     public String getSound() {return sound;}
 
     public void setSound(String sound) {
         this.sound = sound;
     }
+
+    public int setQuantity() {
+        return this.quantity = quantity - 1;
+    }
+
 }

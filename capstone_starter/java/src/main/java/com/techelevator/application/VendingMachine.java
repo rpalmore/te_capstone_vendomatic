@@ -41,22 +41,12 @@ public class VendingMachine {
                         // 1. if item exists
                         // 2. if item is not sold out
 
-
-
                         Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
-
-                       // VendingItem priceFromList = searchForItemInList(vendingItemList, UserInput.selectItem());
-                       // itemPrice = new BigDecimal(String.valueOf(priceFromList.getPrice()));
-
 
                         // if ( item does not exist) {
                         // sout: item does not exist ...
                         // bounce user back to purchase
-                        // if item exists, subtract, dispense...
 
-
-                        // adding the product from the list
-                        // subtracting the money
                         // subtract 1 from the product list
                         // check the total if it is enough
                         // in stock?
@@ -120,10 +110,10 @@ public class VendingMachine {
     }
 
     //defensive programming -- we have to handle null at some point.
+
     public VendingItem searchForItemInList(List<VendingItem> vendingItems, String location) {
         for (VendingItem vendingItem : vendingItems) {
             if (vendingItem.getLocation().equalsIgnoreCase(location)) {
-                    //System.out.println(vendingItem.getType());
                     if (vendingItem.getType().equalsIgnoreCase("chip")) {
                         System.out.println("Crunch Crunch, Yum!");
                     }
