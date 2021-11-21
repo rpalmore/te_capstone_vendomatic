@@ -7,6 +7,7 @@ import com.techelevator.models.VendingItem;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * Responsibilities: This class should handle receiving ALL input from the User
@@ -17,7 +18,6 @@ public class UserInput {
     private static Scanner scanner = new Scanner(System.in);
     private static String dollarProvided;
     private static String itemUserSelected;
-    private static boolean isValidString = false;
     //private String dollarProvided;
 
     public static String getHomeScreenOption() {
@@ -81,18 +81,24 @@ public class UserInput {
     //private static String dollarProvided;
 
     public static String feedMoney() {
-        dollarProvided = scanner.nextLine();
+        boolean isValidString = false;
         while (!isValidString) {
-            if (dollarProvided.equals(" ") || (dollarProvided.equals(""))
-            || (dollarProvided.contains("[a-zA-Z]"))) {
-                System.out.println("Invalid.");
-            } else {
+            dollarProvided = scanner.nextLine();
+            if ((dollarProvided.matches("[0-9]+"))){
                 isValidString = true;
                 return dollarProvided;
             }
+            if (dollarProvided.equals(" ") || (dollarProvided.equals(""))
+            || (dollarProvided.contains("[a-zA-Z]+") == false)) {
+                System.out.println("Invalid value given, please enter a number.");
+                isValidString = false;
+           }
+            //else {
+//                isValidString = true;
+//                return dollarProvided;
+//            }
         }
-        System.out.println(isValidString);
-        return "1";
+        return dollarProvided;
     }
 
     //    double amountInDollars = 0;

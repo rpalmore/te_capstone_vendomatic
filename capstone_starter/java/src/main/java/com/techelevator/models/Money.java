@@ -43,12 +43,15 @@ public class Money { // class does not need to be static
                         System.out.println(vendingItem.getSound());
                         vendingItem.setQuantity();
                         pricesAddedUp(vendingItems, location);
-                    } else if (!vendingItem.getLocation().equalsIgnoreCase(location)) {
+                    }
+                }
+                else if (!vendingItem.getLocation().equalsIgnoreCase(location)) {
+         //       totalAmount.compareTo(vendingItem.getPrice()) == 1
                         i++;
                         if (i >= vendingItems.size()) {
                             System.out.println("This item does not exist. Please select another item.");
-                        }
                     }
+
                 } else {
                     i++;
                     if (i >= vendingItems.size()) {

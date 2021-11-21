@@ -61,10 +61,11 @@ public class VendingMachine {
                             Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
                             Logger logger = new Logger("log.txt");
                             logger.write(LocalDateTime.now().toString() + " " +
-                                    searchForItemInList(vendingItemList, UserInput.itemSelectedForLog()).getName() + " " +
+                              //      searchForItemInList(vendingItemList, UserInput.itemSelectedForLog()).getName() + " " +
                                     UserInput.itemSelectedForLog() + " " +
-                                    //Money.logMoneyFed() + " " +
-                                    //Money.addDollarsProvided() + " " + // this is breaking flow
+                               //     Money.logMoneyFed() + " " +
+
+//                                    Money.addDollarsProvided() + " " + // this is breaking flow
                                     Money.getTotalAmount() + " ");
                             try {
                                 logger.close();
@@ -139,7 +140,7 @@ public class VendingMachine {
     public VendingItem searchForItemInList(List<VendingItem> vendingItems, String location) {
         for (VendingItem vendingItem : vendingItems) {
             if (vendingItem.getLocation().equalsIgnoreCase(location)) {
-             
+
                     return vendingItem;
                 }
             }
