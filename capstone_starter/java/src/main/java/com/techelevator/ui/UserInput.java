@@ -17,6 +17,8 @@ public class UserInput {
     private static Scanner scanner = new Scanner(System.in);
     private static String dollarProvided;
     private static String itemUserSelected;
+    private static boolean isValidString = false;
+    //private String dollarProvided;
 
     public static String getHomeScreenOption() {
         System.out.println("What would you like to do?");
@@ -76,11 +78,48 @@ public class UserInput {
         }
     }
 
+    //private static String dollarProvided;
+
     public static String feedMoney() {
         dollarProvided = scanner.nextLine();
-        //Money.addDollarsProvided();
-        return dollarProvided;
+        while (!isValidString) {
+            if (dollarProvided.equals(" ") || (dollarProvided.equals(""))
+            || (dollarProvided.contains("[a-zA-Z]"))) {
+                System.out.println("Invalid.");
+            } else {
+                isValidString = true;
+                return dollarProvided;
+            }
+        }
+        System.out.println(isValidString);
+        return "1";
     }
+
+    //    double amountInDollars = 0;
+//    String amountInString = input.nextLine();
+//    boolean isValidNum = false;
+//
+//        if (amountInString.equals("") || amountInString.equals(" ")) { // Empty string check
+//        System.out.println("Empty String");
+//    } else if (amountInString.matches("-?\\d+(\\.\\d+)?")) { // valid double check
+//        amountInDollars = Double.parseDouble(amountInString);
+//        isValidNum = true;
+//    } else {
+//        System.out.println("Number Format error");
+//    }
+
+//    public static String feedMoney() {
+//        if (dollarProvided.equals(" ")
+//            || (dollarProvided.equals(""))) {
+//            System.out.println("Please enter a number. ");
+//        } else {
+//                dollarProvided = scanner.nextLine();
+//            }
+//        return dollarProvided;
+//    }
+
+
+
 
     // return amount user fed into machine, without calling feedMoney();
     public static BigDecimal moneyFed() {

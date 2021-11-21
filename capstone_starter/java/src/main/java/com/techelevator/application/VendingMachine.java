@@ -34,13 +34,13 @@ public class VendingMachine {
                 // Purchase if else switch statements
             } else if (choice.equals("purchase")) {
 
-
                 boolean buying = true;
                 while (buying) {
 
                     String choice2 = UserInput.purchase();
                     if (choice2.equals("feeder")) {
                         System.out.println("Please insert money.");
+                        // hit enter and break program
                         Money.addDollarsProvided();
                         // logger
                         Logger logger = new Logger("log.txt");
@@ -59,18 +59,19 @@ public class VendingMachine {
 
 
                             Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
-//                            Logger logger = new Logger("log.txt");
-//                            logger.write(LocalDateTime.now().toString() + " " +
-//                                    searchForItemInList(vendingItemList, UserInput.itemSelectedForLog()).getName() + " " +
-//                                    UserInput.itemSelectedForLog() + " " +
-//                                        Money.addDollarsProvided() + " " +
-//                                    Money.getTotalAmount() + " ");
-//                            try {
-//                                logger.close();
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-//
+                            Logger logger = new Logger("log.txt");
+                            logger.write(LocalDateTime.now().toString() + " " +
+                                    searchForItemInList(vendingItemList, UserInput.itemSelectedForLog()).getName() + " " +
+                                    UserInput.itemSelectedForLog() + " " +
+                                    //Money.logMoneyFed() + " " +
+                                    //Money.addDollarsProvided() + " " + // this is breaking flow
+                                    Money.getTotalAmount() + " ");
+                            try {
+                                logger.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
 
                     } else if (choice2.equals("finish transaction")) {
                         buying = false;
