@@ -56,18 +56,21 @@ public class VendingMachine {
                     } else if (choice2.equals("select product")) {
                         //displaying items
                         listAllItems(vendingItemList);
-                        Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
-                        Logger logger = new Logger("log.txt");
-                        logger.write(LocalDateTime.now().toString() + " " +
-                                searchForItemInList(vendingItemList, UserInput.itemSelectedForLog()).getName() + " " +
-                                UserInput.itemSelectedForLog() + " " +
-                                UserInput.moneyFed() + " " +
-                                Money.getTotalAmount() + " ");
-                        try {
-                            logger.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
+
+                            Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
+//                            Logger logger = new Logger("log.txt");
+//                            logger.write(LocalDateTime.now().toString() + " " +
+//                                    searchForItemInList(vendingItemList, UserInput.itemSelectedForLog()).getName() + " " +
+//                                    UserInput.itemSelectedForLog() + " " +
+//                                        Money.addDollarsProvided() + " " +
+//                                    Money.getTotalAmount() + " ");
+//                            try {
+//                                logger.close();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//
 
                     } else if (choice2.equals("finish transaction")) {
                         buying = false;
@@ -135,7 +138,7 @@ public class VendingMachine {
     public VendingItem searchForItemInList(List<VendingItem> vendingItems, String location) {
         for (VendingItem vendingItem : vendingItems) {
             if (vendingItem.getLocation().equalsIgnoreCase(location)) {
-                System.out.println(vendingItem.getSound());
+             
                     return vendingItem;
                 }
             }
