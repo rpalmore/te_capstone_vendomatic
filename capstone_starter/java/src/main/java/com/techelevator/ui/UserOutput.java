@@ -1,13 +1,8 @@
 package com.techelevator.ui;
 
-import com.techelevator.application.VendingMachine;
-import com.techelevator.models.Drinks;
-import com.techelevator.models.Soundable;
 import com.techelevator.models.VendingItem;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 
 /**

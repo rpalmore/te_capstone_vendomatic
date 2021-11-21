@@ -19,12 +19,7 @@ public class VendingMachine {
     BigDecimal itemPrice;
     public void run() throws IOException {
         List<VendingItem> vendingItemList = readFromFile();
-//        Logger logger = null;
-//        try {
-//            logger = new Logger("log.txt");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
         while (true) {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
@@ -61,27 +56,18 @@ public class VendingMachine {
                     } else if (choice2.equals("select product")) {
                         //displaying items
                         listAllItems(vendingItemList);
-                        // start your check
-                        // 1. if item exists
-                        // 2. if item is not sold out
-
                         Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
                         Logger logger = new Logger("log.txt");
-                        logger.write(LocalDateTime.now().toString() + "message subtracting");
+                        logger.write(LocalDateTime.now().toString() + " " +
+                                searchForItemInList(vendingItemList, UserInput.itemSelectedForLog()).getName() + " " +
+                                UserInput.itemSelectedForLog() + " " +
+                                UserInput.moneyFed() + " " +
+                                Money.getTotalAmount() + " ");
                         try {
                             logger.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        // if ( item does not exist) {
-                        // sout: item does not exist ...
-                        // bounce user back to purchase
-
-                        // subtract 1 from the product list
-                        // check the total if it is enough
-                        // in stock?
-                        // dispense item with sound
-                        // display new balance
 
                     } else if (choice2.equals("finish transaction")) {
                         buying = false;
@@ -89,16 +75,13 @@ public class VendingMachine {
                         //System.out.println(Money.pricesAddedUp());
                         Logger logger = new Logger("log.txt");
                         logger.write(LocalDateTime.now().toString() + " new " +
-                                Money.loggingPricesAddedUp() + " message finishing and cashing out" +
-                                Money.getTotalAmount() + " another one ");
-
+                                Money.loggingPricesAddedUp() + " message finishing and cashing out. New balance: $ " +
+                                Money.getTotalAmount());
                         try {
                             logger.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        // print receipt
-                        // give out change
                     }
                 }
                 //exits
@@ -109,7 +92,6 @@ public class VendingMachine {
                 break;
             }
         }
-
     }
 
     private List<VendingItem> readFromFile() {
@@ -124,8 +106,7 @@ public class VendingMachine {
                 String name = lineArray[1];
                 BigDecimal price = new BigDecimal(lineArray[2]);
                 String type = lineArray[3];
-                // We think we don't need to tease out by type, but we're leaving this for now.
-                // If we remove, we still have to add to our Vending Items List.
+
                 if (type.equalsIgnoreCase("gum")) {
                     Gum gum = new Gum(location, name, price, type);
                     vendingItemsList.add(gum);
@@ -133,10 +114,10 @@ public class VendingMachine {
                     Candy candy = new Candy(location, name, price, type);
                     vendingItemsList.add(candy);
                 } else if (type.equalsIgnoreCase("drink")) {
-                    Drinks drink = new Drinks(location, name, price, type);
+                    Drink drink = new Drink(location, name, price, type);
                     vendingItemsList.add(drink);
                 } else if (type.equalsIgnoreCase("chip")) {
-                    Chips chips = new Chips(location, name, price, type);
+                    Chip chips = new Chip(location, name, price, type);
                     vendingItemsList.add(chips);
                 }
             }
@@ -151,19 +132,15 @@ public class VendingMachine {
     }
 
     //defensive programming -- we have to handle null at some point.
-
     public VendingItem searchForItemInList(List<VendingItem> vendingItems, String location) {
         for (VendingItem vendingItem : vendingItems) {
             if (vendingItem.getLocation().equalsIgnoreCase(location)) {
-                    if (vendingItem.getType().equalsIgnoreCase("chip")) {
-                        System.out.println("Crunch Crunch, Yum!");
-                    }
+                System.out.println(vendingItem.getSound());
                     return vendingItem;
                 }
             }
             System.out.println("Item does not exist! Please enter an item in the list.");
-//            UserInput.purchase();
-//            UserInput.feedMoney();
+
             return null;
         }
     }

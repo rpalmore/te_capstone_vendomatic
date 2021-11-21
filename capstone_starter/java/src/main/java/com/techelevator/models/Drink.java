@@ -2,12 +2,12 @@ package com.techelevator.models;
 
 import java.math.BigDecimal;
 
-public class Candy extends VendingItem{
+public class Drink extends VendingItem{
 
-    private String sound = "Munch Munch, Yum!";
+    private String sound = "Glug Glug, Yum!";
 
 
-    public Candy(String location, String name, BigDecimal price, String type) {
+    public Drink(String location, String name, BigDecimal price, String type) {
         super(location, name, price, type);
     }
 

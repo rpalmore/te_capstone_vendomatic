@@ -17,7 +17,7 @@ public class Money { // class does not need to be static
         BigDecimal cashGiven = new BigDecimal(UserInput.feedMoney());
         totalAmount = totalAmount.add(cashGiven);
 
-        System.out.println(totalAmount);
+        //System.out.println(totalAmount);
         return totalAmount;
     }
 
@@ -87,6 +87,8 @@ public class Money { // class does not need to be static
 
         return totalAmount;
     }
+
+    // returns total sales from vending machine in each session
     public static BigDecimal pricesAddedUp(List<VendingItem> vendingItems, String location) {
         for (VendingItem vendingItem : vendingItems) {
             if (vendingItem.getLocation().equalsIgnoreCase(location)) {
