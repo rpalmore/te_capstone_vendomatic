@@ -2,18 +2,25 @@ package com.techelevator.models;
 
 import com.techelevator.application.VendingMachine;
 import com.techelevator.ui.UserInput;
+import com.techelevator.ui.UserOutput;
+import logger.Logger;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Money { // class does not need to be static
     private static BigDecimal totalAmount = new BigDecimal(0.00);
+    private static BigDecimal pricesAdded = new BigDecimal(0);
 
-    public static void addDollarsProvided() {
+    public static BigDecimal addDollarsProvided() {
         BigDecimal cashGiven = new BigDecimal(UserInput.feedMoney());
         totalAmount = totalAmount.add(cashGiven);
+
         System.out.println(totalAmount);
+        return totalAmount;
     }
+
 
     public static BigDecimal getTotalAmount() {
         return totalAmount;
@@ -30,6 +37,9 @@ public class Money { // class does not need to be static
                 System.out.println("Price: $" + vendingItem.getPrice() + " | Item purchased: "
                         + vendingItem.getName() + " | New balance: $" + totalAmount);
                 vendingItem.setQuantity();
+
+                //LOG
+                pricesAddedUp(vendingItems, location);
             }
             else {
                 i++;
@@ -41,6 +51,13 @@ public class Money { // class does not need to be static
         }
         return totalAmount;
     }
+
+    public static BigDecimal loggingPricesAddedUp() {
+        return UserInput.moneyFed().subtract(pricesAdded);
+    }
+//    public static BigDecimal changeOwed(){
+//        return totalAmount.subtract()
+//    }
 
 
     public static BigDecimal returnChange() {
@@ -68,6 +85,16 @@ public class Money { // class does not need to be static
         + " dimes and " + numNickels + " nickels.");
         totalAmount = totalAmount.multiply(BigDecimal.valueOf(0));
 
-        return null;
+        return totalAmount;
     }
+    public static BigDecimal pricesAddedUp(List<VendingItem> vendingItems, String location) {
+        for (VendingItem vendingItem : vendingItems) {
+            if (vendingItem.getLocation().equalsIgnoreCase(location)) {
+                pricesAdded = pricesAdded.add(vendingItem.getPrice());
+            }
+        }
+        System.out.println("Prices added: " + pricesAdded);
+        return pricesAdded;
+    }
+
 }

@@ -15,6 +15,7 @@ import java.util.Scanner;
  */
 public class UserInput {
     private static Scanner scanner = new Scanner(System.in);
+    private static String dollarProvided;
 
     public static String getHomeScreenOption() {
         System.out.println("What would you like to do?");
@@ -75,16 +76,25 @@ public class UserInput {
     }
 
     public static String feedMoney() {
-        String dollarProvided = scanner.nextLine();
+        dollarProvided = scanner.nextLine();
         //Money.addDollarsProvided();
         return dollarProvided;
     }
+
+    public static BigDecimal moneyFed() {
+        BigDecimal bigDecimal = new BigDecimal(dollarProvided);
+        return bigDecimal;
+    }
+
+
 
     public static String selectItem() {
         System.out.println("Enter the product number you would like: ");
         String itemUserSelected = scanner.nextLine();
         return itemUserSelected;
     }
+
+
 
     }
 

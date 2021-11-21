@@ -1,0 +1,3 @@
+2021-11-20T21:20:44.010382500 5 runningTotal5
+2021-11-20T21:20:46.890695400message subtracting
+2021-11-20T21:20:48.601382400 new 3.50 message finishing and cashing out0.00 another one 

@@ -3,18 +3,28 @@ package com.techelevator.application;
 import com.techelevator.models.*;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
+import logger.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class VendingMachine {
+
     BigDecimal itemPrice;
-    public void run() {
+    public void run() throws IOException {
         List<VendingItem> vendingItemList = readFromFile();
+//        Logger logger = null;
+//        try {
+//            logger = new Logger("log.txt");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         while (true) {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
@@ -28,12 +38,26 @@ public class VendingMachine {
 
                 // Purchase if else switch statements
             } else if (choice.equals("purchase")) {
+
+
                 boolean buying = true;
                 while (buying) {
+
                     String choice2 = UserInput.purchase();
                     if (choice2.equals("feeder")) {
                         System.out.println("Please insert money.");
                         Money.addDollarsProvided();
+                        // logger
+                        Logger logger = new Logger("log.txt");
+                        logger.write(LocalDateTime.now().toString() + " " + UserInput.moneyFed() +
+                                " runningTotal" + Money.getTotalAmount());
+                        try {
+                            logger.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+
                     } else if (choice2.equals("select product")) {
                         //displaying items
                         listAllItems(vendingItemList);
@@ -42,7 +66,13 @@ public class VendingMachine {
                         // 2. if item is not sold out
 
                         Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
-
+                        Logger logger = new Logger("log.txt");
+                        logger.write(LocalDateTime.now().toString() + "message subtracting");
+                        try {
+                            logger.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         // if ( item does not exist) {
                         // sout: item does not exist ...
                         // bounce user back to purchase
@@ -56,6 +86,17 @@ public class VendingMachine {
                     } else if (choice2.equals("finish transaction")) {
                         buying = false;
                         Money.returnChange();
+                        //System.out.println(Money.pricesAddedUp());
+                        Logger logger = new Logger("log.txt");
+                        logger.write(LocalDateTime.now().toString() + " new " +
+                                Money.loggingPricesAddedUp() + " message finishing and cashing out" +
+                                Money.getTotalAmount() + " another one ");
+
+                        try {
+                            logger.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         // print receipt
                         // give out change
                     }
