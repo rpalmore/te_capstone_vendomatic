@@ -45,8 +45,8 @@ public class VendingMachine {
                         Money.addDollarsProvided();
                         // logger
                         Logger logger = new Logger("log.txt");
-                        logger.write(LocalDateTime.now().toString() + " " + UserInput.moneyFed() +
-                                " runningTotal" + Money.getTotalAmount());
+                        logger.write(LocalDateTime.now().toString() + " FEED MONEY: $" + UserInput.moneyFed() +
+                                " $" + Money.getTotalAmount());
                         try {
                             logger.close();
                         } catch (IOException e) {
@@ -58,17 +58,15 @@ public class VendingMachine {
                         //displaying items
                         listAllItems(vendingItemList);
 
-                            // 01/01/2016 12:01:25 PM Cowtales B2 $8.50 $7.50
+
                             Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
                             Logger logger = new Logger("log.txt");
                             logger.write(LocalDateTime.now().toString() + " " +
-                                  //searchForItemInList(vendingItemList, UserInput.itemSelectedForLog()).getName() + " " +
                                     Money.getLoggedName() + " " +
-                                    UserInput.itemSelectedForLog() + " " +
-                               //     Money.logMoneyFed() + " " +
-
-//                                    Money.addDollarsProvided() + " " + // this is breaking flow
-                                    Money.getTotalAmount() + " ");
+                                    UserInput.itemSelectedForLog() + " $" +
+                                  //  Money.loggingPricesAddedUp() + " <------" +
+                                    Money.logMoneyFed() + " $" +
+                                    Money.getTotalAmount());
                             try {
                                 logger.close();
                             } catch (IOException e) {
@@ -81,8 +79,8 @@ public class VendingMachine {
                         Money.returnChange();
                         //System.out.println(Money.pricesAddedUp());
                         Logger logger = new Logger("log.txt");
-                        logger.write(LocalDateTime.now().toString() + " new " +
-                                Money.loggingPricesAddedUp() + " message finishing and cashing out. New balance: $ " +
+                        logger.write(LocalDateTime.now().toString() +
+                                " Give Change: $" + Money.loggingPricesAddedUp() + " " +
                                 Money.getTotalAmount());
                         try {
                             logger.close();

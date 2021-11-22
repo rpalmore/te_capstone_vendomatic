@@ -12,7 +12,7 @@ import java.util.List;
 public class Money { // class does not need to be static
     private static BigDecimal totalAmount = new BigDecimal(0.00);
     private static BigDecimal pricesAdded = new BigDecimal(0);
-    private static int funds = 0;
+    private static BigDecimal funds = new BigDecimal(0);
     private static BigDecimal cashGiven = new BigDecimal(0);
 
     public static BigDecimal addDollarsProvided() {
@@ -43,6 +43,7 @@ public class Money { // class does not need to be static
                         System.out.println(vendingItem.getSound());
                         vendingItem.setQuantity();
                         pricesAddedUp(vendingItems, location);
+                        getVendingItemName(vendingItems, location);
                     }
                 }
                 else if (vendingItem.getLocation().equalsIgnoreCase(location)) {
@@ -60,13 +61,13 @@ public class Money { // class does not need to be static
         return totalAmount;
     }
 
-    private static String nameOfItem = "";
+    private static String nameOfItem;
     public static String getVendingItemName(List<VendingItem> vendingItems, String location){
         for (VendingItem vendingItem : vendingItems) {
             if (vendingItem.getLocation().equalsIgnoreCase(location)) {
-                vendingItem.getName();
-                String nameOfItem = vendingItem.getName();
+                nameOfItem = vendingItem.getName();
             }
+
         }
         return nameOfItem;
     }
@@ -74,16 +75,21 @@ public class Money { // class does not need to be static
     public static String getLoggedName(){
         return nameOfItem;
     }
-
+//        private static BigDecimal logThisPlease = new BigDecimal(0);
     public static BigDecimal loggingPricesAddedUp() {
+       // logThisPlease = UserInput.moneyFed().subtract(pricesAdded);
+       // return totalAmount.subtract(pricesAdded);
         return UserInput.moneyFed().subtract(pricesAdded);
     }
-    public static int logMoneyFed() {
-        funds = UserInput.moneyFed().intValue();
-        if (funds > 0) {
-            return funds;
-        }
-        return 0;
+    public static BigDecimal logMoney() {
+        // logThisPlease = UserInput.moneyFed().subtract(pricesAdded);
+        // return totalAmount.subtract(pricesAdded);
+        return UserInput.moneyFed().subtract(pricesAdded);
+    }
+    public static BigDecimal logMoneyFed() {
+
+        funds = totalAmount.subtract(UserInput.moneyFed());
+        return funds;
     }
 //    public static BigDecimal changeOwed(){
 //        return totalAmount.subtract()
