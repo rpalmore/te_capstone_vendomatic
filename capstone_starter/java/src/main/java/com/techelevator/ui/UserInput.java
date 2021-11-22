@@ -18,7 +18,6 @@ public class UserInput {
     private static Scanner scanner = new Scanner(System.in);
     private static String dollarProvided;
     private static String itemUserSelected;
-    //private String dollarProvided;
 
     public static String getHomeScreenOption() {
         System.out.println("What would you like to do?");
@@ -78,8 +77,6 @@ public class UserInput {
         }
     }
 
-    //private static String dollarProvided;
-
     public static String feedMoney() {
         boolean isValidString = false;
         while (!isValidString) {
@@ -93,47 +90,15 @@ public class UserInput {
                 System.out.println("Invalid value given, please enter a number.");
                 isValidString = false;
            }
-            //else {
-//                isValidString = true;
-//                return dollarProvided;
-//            }
         }
         return dollarProvided;
     }
 
-    //    double amountInDollars = 0;
-//    String amountInString = input.nextLine();
-//    boolean isValidNum = false;
-//
-//        if (amountInString.equals("") || amountInString.equals(" ")) { // Empty string check
-//        System.out.println("Empty String");
-//    } else if (amountInString.matches("-?\\d+(\\.\\d+)?")) { // valid double check
-//        amountInDollars = Double.parseDouble(amountInString);
-//        isValidNum = true;
-//    } else {
-//        System.out.println("Number Format error");
-//    }
-
-//    public static String feedMoney() {
-//        if (dollarProvided.equals(" ")
-//            || (dollarProvided.equals(""))) {
-//            System.out.println("Please enter a number. ");
-//        } else {
-//                dollarProvided = scanner.nextLine();
-//            }
-//        return dollarProvided;
-//    }
-
-
-
-
     // return amount user fed into machine, without calling feedMoney();
     public static BigDecimal moneyFed() {
         BigDecimal bigDecimal = new BigDecimal(dollarProvided);
-        //return dollarProvided; still a string
         return bigDecimal;
     }
-
 
     public static String selectItem() {
         System.out.println("Enter the product number you would like: ");
@@ -147,12 +112,3 @@ public class UserInput {
 
 
     }
-
-
-
-//    public static void listItems(List<VendingItem> vendingItemList){
-//
-//        for (VendingItem item : vendingItemList) {
-//            System.out.println(item.getLocation() + " " + item.getName() + " " +
-//                    item.getPrice() + " " + item.getType() + " " + item.getQuantity());
-//        }

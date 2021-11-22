@@ -15,14 +15,9 @@ public abstract class VendingItem {
         this.name = name;
         this.price = price;
         this.type = type;
-        //this.sound = sound;
-        this.quantity = quantity;  // do we need this in our constructor?
+        this.quantity = quantity;
     }
 
-   // We could also add the quantity in the constructor, with the value of 5.
-    // we could add a subtractOne method in here to subtract from the starting quantity.
-
-    //getters
 
     public String getLocation() {
         return location;
@@ -43,10 +38,6 @@ public abstract class VendingItem {
     public int getQuantity() { return quantity;}
 
     public String getSound() {return sound;}
-
-    public void setSound(String sound) {
-        this.sound = sound;
-    }
 
     public int setQuantity() {
         return this.quantity = quantity - 1;

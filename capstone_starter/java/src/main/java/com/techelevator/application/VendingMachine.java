@@ -17,7 +17,6 @@ import java.util.Scanner;
 
 public class VendingMachine {
 
-    BigDecimal itemPrice;
     public void run() throws IOException {
         List<VendingItem> vendingItemList = readFromFile();
 
@@ -25,7 +24,6 @@ public class VendingMachine {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
 
-            //Display switch
             // display the vending machine slots
             if (choice.equals("display")) {
                 listAllItems(vendingItemList);
@@ -41,9 +39,8 @@ public class VendingMachine {
                     String choice2 = UserInput.purchase();
                     if (choice2.equals("feeder")) {
                         System.out.println("Please insert money.");
-                        // hit enter and break program
                         Money.addDollarsProvided();
-                        // logger
+
                         Logger logger = new Logger("log.txt");
                         logger.write(LocalDateTime.now().toString() + " FEED MONEY: $" + UserInput.moneyFed() +
                                 " $" + Money.getTotalAmount());
@@ -53,19 +50,17 @@ public class VendingMachine {
                             e.printStackTrace();
                         }
 
-
                     } else if (choice2.equals("select product")) {
                         //displaying items
                         listAllItems(vendingItemList);
-
 
                             Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
                             Logger logger = new Logger("log.txt");
                             logger.write(LocalDateTime.now().toString() + " " +
                                     Money.getLoggedName() + " " +
                                     UserInput.itemSelectedForLog() + " $" +
-                                  //  Money.loggingPricesAddedUp() + " <------" +
-                                    Money.logMoneyFed() + " $" +
+                                    //Money.loggingPricesAddedUp()  + // this breaks our program
+                                    //Money.logMoneyFed() + " $" + // this breaks our program
                                     Money.getTotalAmount());
                             try {
                                 logger.close();
@@ -77,10 +72,10 @@ public class VendingMachine {
                     } else if (choice2.equals("finish transaction")) {
                         buying = false;
                         Money.returnChange();
-                        //System.out.println(Money.pricesAddedUp());
                         Logger logger = new Logger("log.txt");
                         logger.write(LocalDateTime.now().toString() +
-                                " Give Change: $" + Money.loggingPricesAddedUp() + " " +
+                                " Give Change: $" + " " +
+                                //Money.loggingPricesAddedUp() + " " + // this is breaking purchase/finish process.
                                 Money.getTotalAmount());
                         try {
                             logger.close();
@@ -136,18 +131,6 @@ public class VendingMachine {
         UserOutput.listItems(vendingItemList);
     }
 
-    //defensive programming -- we have to handle null at some point.
-    public VendingItem searchForItemInList(List<VendingItem> vendingItems, String location) {
-        for (VendingItem vendingItem : vendingItems) {
-            if (vendingItem.getLocation().equalsIgnoreCase(location)) {
-
-                    return vendingItem;
-                }
-            }
-            System.out.println("Item does not exist! Please enter an item in the list.");
-
-            return null;
-        }
     }
 
 

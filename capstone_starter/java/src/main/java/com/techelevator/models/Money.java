@@ -1,25 +1,19 @@
 package com.techelevator.models;
-
-import com.techelevator.application.VendingMachine;
 import com.techelevator.ui.UserInput;
-import com.techelevator.ui.UserOutput;
-import logger.Logger;
-
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
-public class Money { // class does not need to be static
+public class Money {
     private static BigDecimal totalAmount = new BigDecimal(0.00);
     private static BigDecimal pricesAdded = new BigDecimal(0);
     private static BigDecimal funds = new BigDecimal(0);
     private static BigDecimal cashGiven = new BigDecimal(0);
+    private static String nameOfItem;
+
 
     public static BigDecimal addDollarsProvided() {
-       // if (UserInput.feedMoney() != null) {
             cashGiven = new BigDecimal(UserInput.feedMoney());
             totalAmount = totalAmount.add(cashGiven);
-       // }
         return totalAmount;
     }
 
@@ -61,7 +55,6 @@ public class Money { // class does not need to be static
         return totalAmount;
     }
 
-    private static String nameOfItem;
     public static String getVendingItemName(List<VendingItem> vendingItems, String location){
         for (VendingItem vendingItem : vendingItems) {
             if (vendingItem.getLocation().equalsIgnoreCase(location)) {
@@ -76,25 +69,21 @@ public class Money { // class does not need to be static
         return nameOfItem;
     }
 //        private static BigDecimal logThisPlease = new BigDecimal(0);
-    public static BigDecimal loggingPricesAddedUp() {
+
+    public static BigDecimal loggingPricesAddedUp() { // method is forcing exit when included in logger
        // logThisPlease = UserInput.moneyFed().subtract(pricesAdded);
        // return totalAmount.subtract(pricesAdded);
         return UserInput.moneyFed().subtract(pricesAdded);
     }
-    public static BigDecimal logMoney() {
+    public static BigDecimal logMoney() { // method is forcing exit when included in logger
         // logThisPlease = UserInput.moneyFed().subtract(pricesAdded);
         // return totalAmount.subtract(pricesAdded);
         return UserInput.moneyFed().subtract(pricesAdded);
     }
-    public static BigDecimal logMoneyFed() {
-
+    public static BigDecimal logMoneyFed() { // method is forcing exit when included in logger
         funds = totalAmount.subtract(UserInput.moneyFed());
         return funds;
     }
-//    public static BigDecimal changeOwed(){
-//        return totalAmount.subtract()
-//    }
-
 
     public static BigDecimal returnChange() {
 
@@ -124,7 +113,7 @@ public class Money { // class does not need to be static
         return totalAmount;
     }
 
-    // returns total sales from vending machine in each session
+    // this is for optional sales receipt that totals up all sales
     public static BigDecimal pricesAddedUp(List<VendingItem> vendingItems, String location) {
         for (VendingItem vendingItem : vendingItems) {
             if (vendingItem.getLocation().equalsIgnoreCase(location)) {
