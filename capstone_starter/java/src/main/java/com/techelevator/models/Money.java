@@ -45,23 +45,35 @@ public class Money { // class does not need to be static
                         pricesAddedUp(vendingItems, location);
                     }
                 }
-                else if (!vendingItem.getLocation().equalsIgnoreCase(location)) {
-         //       totalAmount.compareTo(vendingItem.getPrice()) == 1
-                        i++;
-                        if (i >= vendingItems.size()) {
-                            System.out.println("This item does not exist. Please select another item.");
-                    }
-
-                } else {
-                    i++;
-                    if (i >= vendingItems.size()) {
+                else if (vendingItem.getLocation().equalsIgnoreCase(location)) {
+                    if (totalAmount.compareTo(vendingItem.getPrice()) == -1) {
                         System.out.println("Insufficient funds. Please enter more money.");
                     }
+                }
+                else if (!vendingItem.getLocation().equalsIgnoreCase(location)){
+                    i++;
+                    if (i >= vendingItems.size()) {
+                        System.out.println("This item does not exist. Please select another item.");
+                   }
                 }
             }
         return totalAmount;
     }
 
+    private static String nameOfItem = "";
+    public static String getVendingItemName(List<VendingItem> vendingItems, String location){
+        for (VendingItem vendingItem : vendingItems) {
+            if (vendingItem.getLocation().equalsIgnoreCase(location)) {
+                vendingItem.getName();
+                String nameOfItem = vendingItem.getName();
+            }
+        }
+        return nameOfItem;
+    }
+
+    public static String getLoggedName(){
+        return nameOfItem;
+    }
 
     public static BigDecimal loggingPricesAddedUp() {
         return UserInput.moneyFed().subtract(pricesAdded);

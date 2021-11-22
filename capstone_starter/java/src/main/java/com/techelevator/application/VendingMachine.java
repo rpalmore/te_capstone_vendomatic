@@ -4,6 +4,7 @@ import com.techelevator.models.*;
 import com.techelevator.ui.UserInput;
 import com.techelevator.ui.UserOutput;
 import logger.Logger;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -57,11 +58,12 @@ public class VendingMachine {
                         //displaying items
                         listAllItems(vendingItemList);
 
-
+                            // 01/01/2016 12:01:25 PM Cowtales B2 $8.50 $7.50
                             Money.subtractFromTotal(vendingItemList, UserInput.selectItem());
                             Logger logger = new Logger("log.txt");
                             logger.write(LocalDateTime.now().toString() + " " +
-                              //      searchForItemInList(vendingItemList, UserInput.itemSelectedForLog()).getName() + " " +
+                                  //searchForItemInList(vendingItemList, UserInput.itemSelectedForLog()).getName() + " " +
+                                    Money.getLoggedName() + " " +
                                     UserInput.itemSelectedForLog() + " " +
                                //     Money.logMoneyFed() + " " +
 
