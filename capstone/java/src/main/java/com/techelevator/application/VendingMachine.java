@@ -89,7 +89,7 @@ public class VendingMachine {
 
                 System.out.println("Goodbye!");
                 System.exit(0);
-                break;
+                //break;
             }
         }
     }

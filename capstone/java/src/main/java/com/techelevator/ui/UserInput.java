@@ -89,6 +89,7 @@ public class UserInput {
             || (dollarProvided.contains("[a-zA-Z]+") == false)) {
                 System.out.println("Invalid value given, please enter a number.");
                 isValidString = false;
+
            }
         }
         return dollarProvided;
